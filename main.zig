@@ -24,3 +24,9 @@ pub fn main() !void {
 //        else => return err,
 //    };
 }
+
+/// TODO: Clean this up.
+pub fn panic(msg: []const u8, _: ?*std.builtin.StackTrace, _: ?usize) noreturn {
+    _ = os.write(os.STDERR_FILENO, msg) catch unreachable;
+    os.exit(1);
+}
